@@ -2,8 +2,11 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const message = document.getElementById('message');
 const productList = document.getElementById('productList');
+const productDetails = document.getElementById('productDetails');
+const cartList = document.getElementById('cartList');
 
 let products = [];
+let cart = [];
 
 async function getProducts() {
     try{
@@ -30,10 +33,46 @@ function displayProducts(data) {
     data.forEach(product => {
         const productItem = document.createElement('div');
         productItem.innerHTML = `
-            <p>${product.title}</p>
-            <p>Price: $${product.price}</p>
+            <p>
+                <button onclick="showProductDetails(${product.id})">
+                ${product.title}</button>
+            </p>
         `;
         productList.appendChild(productItem);
+    });
+}
+
+function showProductDetails(productId) {
+    const product = products.find(p => p.id === productId);
+    if(product) {
+        productDetails.innerHTML = `
+            <h3>${product.title}</h3>
+            <p>Price: $${product.price}</p>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+    } else {
+        productDetails.innerHTML = '<p>Product not found.</p>';
+    }
+}
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if(product) {
+        cart.push(product);
+        displayCart();
+    } else {
+        alert('Product not found.');
+    }
+}
+
+function displayCart() {
+    cartList.innerHTML = '';
+    cart.forEach(product => {
+        const cartItem = document.createElement('div');
+        cartItem.innerHTML = `
+            <p>${product.title} - $${product.price}</p>
+        `;
+        cartList.appendChild(cartItem);
     });
 }
 
