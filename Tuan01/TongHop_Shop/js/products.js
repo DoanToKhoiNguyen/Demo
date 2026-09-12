@@ -1,10 +1,13 @@
 const productList = document.getElementById("productList");
 const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
 
 let allProducts = [];
 
 // Hiển thị sản phẩm
 function displayProducts(products) {
+    // map() duyệt qua từng sản phẩm trong mảng products
+    // Mỗi sản phẩm sẽ được chuyển thành một đoạn HTML
     productList.innerHTML = products.map(function(product) {
         return `
             <div class="product">
@@ -18,6 +21,8 @@ function displayProducts(products) {
                 </button>
             </div>
         `;
+    // join("") nối các đoạn HTML thành một chuỗi
+    // Sau đó gán chuỗi HTML vào productList
     }).join("");
 }
 
@@ -67,7 +72,7 @@ searchInput.addEventListener("input", function() {
 
 // Load products
 async function loadProducts() {
-    allProducts = await getProducts();
+    allProducts = await getproducts();
 
     displayProducts(allProducts);
 }
