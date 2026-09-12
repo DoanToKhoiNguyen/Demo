@@ -67,3 +67,17 @@ form input {
 #message {
     color: green;
 }
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    margin: 0;
+}
+
+.search-box button {
+    width: 100px;
+}
