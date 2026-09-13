@@ -15,7 +15,7 @@ async function getproducts() {
         // Trả về một mảng (Array) các Object sản phẩm
         const data = await response.json();
 
-        products = data.slice(0, 6);
+        products = data.slice(0, 10);
         return products;
     } 
     catch (error) {

@@ -17,10 +17,9 @@ function displayProducts(products) {
                 </div>
 
                 <button onclick="addToCart(${product.id})">
-                    Add
+                    Add Cart
                 </button>
-            </div>
-        `;
+            </div>`;
     // join("") nối các đoạn HTML thành một chuỗi
     // Sau đó gán chuỗi HTML vào productList
     }).join("");
@@ -42,7 +41,8 @@ function addToCart(productId) {
 
     if (cartItem) {
         cartItem.quantity++;
-    } else {
+    } 
+    else {
         cart.push({
             id: product.id,
             title: product.title,
@@ -62,9 +62,7 @@ searchInput.addEventListener("input", function() {
 
     // filter
     const result = allProducts.filter(function(product) {
-        return product.title
-            .toLowerCase()
-            .includes(keyword);
+        return product.title.toLowerCase().includes(keyword);
     });
 
     displayProducts(result);

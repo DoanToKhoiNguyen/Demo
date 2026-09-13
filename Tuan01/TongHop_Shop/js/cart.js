@@ -18,6 +18,8 @@ function displayCart() {
                 <div>
                     <strong>${item.title}</strong>
                     <p>Qty: ${item.quantity}</p>
+                    <button onclick="increaseQuantity(${item.id})">+</button>
+                    <button onclick="decreaseQuantity(${item.id})">-</button>
                 </div>
 
                 <div>
@@ -39,6 +41,30 @@ function displayCart() {
     totalElement.textContent = `Total: $${total.toFixed(2)}`;
 }
 
+function increaseQuantity(productId){
+    const cart = getCart();
+    const cartItem = cart.find(item => item.id === productId);
+    if(cartItem){
+        cartItem.quantity+=1;
+        saveCart(cart);
+        displayCart();
+    }
+}
+
+function decreaseQuantity(productId){
+    const cart = getCart();
+    const cartItem = cart.find(item => item.id === productId);
+    if(cartItem){
+        cartItem.quantity-=1;
+        if(cartItem.quantity <= 0){
+            removeFromCart(productId);
+        }
+        else{
+            saveCart(cart);
+            displayCart();
+        }
+    }
+}
 // Xóa sản phẩm
 function removeFromCart(productId) {
     let cart = getCart();
