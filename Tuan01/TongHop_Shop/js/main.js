@@ -1,1 +1,1 @@
-console.log("Welcome to My Shop!");
+console.log("Welcome to My Shop");
